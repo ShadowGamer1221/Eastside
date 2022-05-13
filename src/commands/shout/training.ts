@@ -75,7 +75,7 @@ class TrainingCommand extends Command {
         }
 
         try {
-            await robloxGroup.updateShout(`Greetings! There is a training being hosted by ${robloxUser.name}. Join for a chance of being promoted!\n\n~| GAME LINK: https://www.roblox.com/games/8897440496/BETA-Eastside-Cafe-Hotels-Resorts\n\nsigned,\n${robloxUser.name}`);
+            await robloxGroup.updateShout(`Greetings! There is a training being hosted by ${robloxUser.name}. Join for a chance of being promoted!\n\n~| GAME LINK: https://www.roblox.com/games/9344742878/Eastside-Training-Center\n\nsigned,\n${robloxUser.name}`);
             ctx.reply({ embeds: [ await getSuccessfulTrainingEmbed() ]});
             logAction('Training Announcement', ctx.user);
         } catch (err) {
@@ -89,7 +89,7 @@ class TrainingCommand extends Command {
 
         const sugEmbed = new Discord.MessageEmbed()
                     .setColor(greenColor)
-                    .setDescription(`Greetings! There is a training being hosted by ${robloxUser.name}. Join for a chance of being promoted!\n\n~| GAME LINK: https://www.roblox.com/games/8897440496/BETA-Eastside-Cafe-Hotels-Resorts\n\nsigned,\n${robloxUser.name}`)
+                    .setDescription(`Greetings! There is a training being hosted by ${robloxUser.name}. Join for a chance of being promoted!\n\n~| GAME LINK: https://www.roblox.com/games/9344742878/Eastside-Training-Center\n\nsigned,\n${robloxUser.name}`)
                     .setTimestamp()
         
                 const row = new Discord.MessageActionRow().addComponents(
