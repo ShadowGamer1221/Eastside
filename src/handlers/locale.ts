@@ -644,11 +644,13 @@ export const getMemberCountMessage = (oldCount: number, newCount: number): Messa
         const embed = new MessageEmbed()
         .setTitle('New Member Joined!')
         .setDescription(`The member count is now **${newCount}** (+${newCount - oldCount})`)
+        .setColor(greenColor)
         .setTimestamp();
         return embed;
     } else {
         const Oldembed = new MessageEmbed()
         .setTitle('A Member Left 😭')
+        .setColor(redColor)
         .setDescription(`The member count is now **${newCount}** (+${oldCount - newCount})`)
         .setTimestamp();
         return Oldembed;
