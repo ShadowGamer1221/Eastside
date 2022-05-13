@@ -1,15 +1,16 @@
-import { MessageEmbed } from 'discord.js';
+import { Message, MessageEmbed } from 'discord.js';
 import { CommandArgument, DatabaseUser } from '../structures/types';
 import { config } from '../config';
 import { User, PartialUser, GroupShout, GroupMember, GroupWallPost, GroupJoinRequest, GroupRole } from 'bloxy/dist/structures';
 import { User as DiscordUser } from 'discord.js';
 import { Command } from '../structures/Command';
-import { robloxClient, robloxGroup } from '../main';
+import { discordClient, robloxClient, robloxGroup } from '../main';
 import { Client } from 'bloxy';
 import { textSync } from 'figlet';
 import axios from 'axios';
 import fetch from 'node-fetch'
 import { indexOf } from 'lodash';
+import discord from 'discord.js';
 
 export const checkIconUrl = 'https://cdn.lengolabs.com/qbot-icons/check.png';
 export const xmarkIconUrl = 'https://cdn.lengolabs.com/qbot-icons/xmark.png';
@@ -609,9 +610,9 @@ export const getUserInfoEmbed = async (user: User | PartialUser, member: GroupMe
 
 export const getRoleListEmbed = (roles: GroupRole[]): MessageEmbed => {
     const embed = new MessageEmbed()
-        .setAuthor('Group Roles', infoIconUrl)
+        .setAuthor('Group Ranks', infoIconUrl)
         .setColor(mainColor)
-        .setDescription('Here is a list of all roles on the group.');
+        .setDescription('Here is a list of all ranks on the group.');
 
     roles.forEach((role) => {
         embed.addField(role.name, `Rank: \`${role.rank || '0'}\``, true);
@@ -638,11 +639,19 @@ export const getNotInactiveEmbed = (): MessageEmbed => {
     return embed;
 }
 
-export const getMemberCountMessage = (oldCount: number, newCount: number): string => {
+export const getMemberCountMessage = (oldCount: number, newCount: number): MessageEmbed => {
     if(newCount > oldCount) {
-        return `⬆️ The member count is now **${newCount}** (+${newCount - oldCount})`;
+        const embed = new MessageEmbed()
+        .setTitle('New Member Joined!')
+        .setDescription(`The member count is now **${newCount}** (+${newCount - oldCount})`)
+        .setTimestamp();
+        return embed;
     } else {
-        return `⬇️ The member count is now **${newCount}** (-${oldCount - newCount})`;
+        const Oldembed = new MessageEmbed()
+        .setTitle('A Member Left 😭')
+        .setDescription(`The member count is now **${newCount}** (+${oldCount - newCount})`)
+        .setTimestamp();
+        return Oldembed;
     }
 }
 
