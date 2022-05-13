@@ -22,7 +22,7 @@ const recordMemberCount = async () => {
                     memberCountChannel.send({ embeds: [ getMemberCountMilestoneEmbed(group.memberCount) ] });
                 } else {
                     if(!config.memberCount.onlyMilestones) {
-                        memberCountChannel.send({ content: getMemberCountMessage(lastMemberCount, group.memberCount) });
+                     memberCountChannel.send({ embeds: [ getMemberCountMessage(lastMemberCount, group.memberCount) ] });
                     }
                 }
             }
